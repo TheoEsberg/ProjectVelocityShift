@@ -13,5 +13,5 @@ Hejsan
 ### to do
 
 - punkt 1
-- punnkt 2
-- punnnkt 3
+- punkt 2
+- punkt 3
