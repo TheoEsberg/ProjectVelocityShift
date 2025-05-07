@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     // Movement 
     public CharacterController controller;
@@ -19,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         Movement();
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
