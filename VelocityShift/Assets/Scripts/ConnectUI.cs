@@ -4,6 +4,8 @@ using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 public class ConnectUI : MonoBehaviour
 {
@@ -20,25 +22,27 @@ public class ConnectUI : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("===================================");
-        Debug.Log("Address: " + NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address);
-        Debug.Log("Port: " + NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Port);
-        Debug.Log("ServerListenAddress: " + NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.ServerListenAddress);
-        Debug.Log("===================================");
+        
     }
 
-    private void HostButtonOnClick()
+    private async void HostButtonOnClick()
     {
+        CustomSceneManager.instance.LoadScene("Game");
+        await Task.Delay(1000);
+
+
         var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
         transport.ConnectionData.Address = "0.0.0.0";
         transport.ConnectionData.Port = 7777;
 
         NetworkManager.Singleton.StartHost();
-        menuCamera.SetActive(false);
     }
 
-    private void ClientButtonOnClick()
+    private async void ClientButtonOnClick()
     {
+        CustomSceneManager.instance.LoadScene("Game");
+        await Task.Delay(1000);
+
         var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
 
         string ipAddress = ipInputField.text;
@@ -52,6 +56,5 @@ public class ConnectUI : MonoBehaviour
         transport.ConnectionData.Port = 7777;
 
         NetworkManager.Singleton.StartClient();
-        menuCamera.SetActive(false);
     }
 }
