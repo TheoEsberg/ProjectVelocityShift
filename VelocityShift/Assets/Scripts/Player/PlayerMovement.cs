@@ -18,11 +18,19 @@ public class PlayerMovement : NetworkBehaviour
     // Jumping 
     public float jumpHeight = 3f;
 
+    // My characther model
+    public GameObject characterModel;
+
     void Update()
     {
         if (!IsOwner)
         {
             return;
+        }
+
+        if (IsOwner)
+        {
+            characterModel.SetActive(false);
         }
 
         Movement();
