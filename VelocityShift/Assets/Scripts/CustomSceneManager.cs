@@ -21,7 +21,7 @@ public class CustomSceneManager : MonoBehaviour
         }
     }
 
-    public async void LoadScene(string sceneName)
+    public void LoadScene(string sceneName)
     {
         var scene = SceneManager.LoadSceneAsync(sceneName);
         scene.allowSceneActivation = false;
@@ -29,7 +29,6 @@ public class CustomSceneManager : MonoBehaviour
         loaderCanvas.SetActive(true);
         
         do {
-            await Task.Delay(300); //REMOVE LATER
             progressBar.fillAmount = scene.progress;
         } while (scene.progress < 0.9f);
 

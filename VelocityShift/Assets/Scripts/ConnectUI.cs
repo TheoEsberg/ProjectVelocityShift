@@ -28,7 +28,7 @@ public class ConnectUI : MonoBehaviour
     private async void HostButtonOnClick()
     {
         CustomSceneManager.instance.LoadScene("Game");
-        await Task.Delay(1000);
+        await Task.Delay(250);
 
 
         var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
@@ -41,7 +41,7 @@ public class ConnectUI : MonoBehaviour
     private async void ClientButtonOnClick()
     {
         CustomSceneManager.instance.LoadScene("Game");
-        await Task.Delay(1000);
+        await Task.Delay(250);
 
         var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
 
